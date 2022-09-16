@@ -248,8 +248,24 @@ createCity: (req, res) => {
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
+},
+
+getCities: (req, res) => {
+    sequelize.query(``)
+    .then(dbRes => res.status(200).send(dbRes[0]))
+    .catch(err => console.log(err))
+
+},
+
+deleteCity: (req, res) => {
+    sequelize.query(`DELETE FROM cities
+    WHERE '${req.params.city_id}';`)
+    .then(dbRes => res.status(200).send(dbRes[0]))
+    .catch(err => console.log(err))
+
+}
 
 
 
 }
-}
+
