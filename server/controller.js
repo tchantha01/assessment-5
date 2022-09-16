@@ -243,40 +243,28 @@ module.exports = {
 },
 
 createCity: (req, res) => {
+    const {name, rating, countryId} = req.body
     sequelize.query(`INSERT INTO cities (name, rating, country_id)
-    VALUES ('${req.body.name}','${req.body.rating}','${req.body.country_id}');`)
+    VALUES ('${name}',${rating},${countryId});`)
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
 },
 
 getCities: (req, res) => {
-    sequelize.query(`
+    sequelize.query(`SELECT ci.city_id, ci.name AS city, ci.rating, co.country_id, co.name AS country FROM cities ci JOIN countries co ON ci.country_id = co.country_id; 
     
     
-    
-    
-    
-    
-    
-    
-    
-    UPDATE cities
-    SET rating DESC
-    ODER BY COUNT (*)
-    LIMIT 3;
-    
-    
-    
-    `)                               //break down syntax similar to demo and lab
+    `)                               
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
 },
 
 deleteCity: (req, res) => {
+    const {id} = req.params
     sequelize.query(`DELETE FROM cities
-    WHERE '${req.params.city_id}';`)
+    WHERE city_id = ${id};`)
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
