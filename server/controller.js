@@ -236,14 +236,15 @@ module.exports = {
     },
 
     getCountries: (req, res) => {  
-        sequelize.query(`SELECT * FROM countires;`)
+        sequelize.query(`SELECT * FROM countries;`)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))
 
 },
 
 createCity: (req, res) => {
-    sequelize.query(`INSERT INTO cities (name, rating,'${req.body.country_id}';`)
+    sequelize.query(`INSERT INTO cities (name, rating, country_id)
+    VALUES ('${req.body.name}','${req.body.rating}','${req.body.country_id}');`)
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
