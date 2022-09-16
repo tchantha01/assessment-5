@@ -251,7 +251,24 @@ createCity: (req, res) => {
 },
 
 getCities: (req, res) => {
-    sequelize.query(``)                               //break down syntax similar to demo and lab
+    sequelize.query(`
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    UPDATE cities
+    SET rating DESC
+    ODER BY COUNT (*)
+    LIMIT 3;
+    
+    
+    
+    `)                               //break down syntax similar to demo and lab
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
@@ -263,19 +280,6 @@ deleteCity: (req, res) => {
     .then(dbRes => res.status(200).send(dbRes[0]))
     .catch(err => console.log(err))
 
-}, 
-
-updateCities: (req, res) => {
-    sequelize.query(`UPDATE cities
-    SET rating DESC
-    ODER BY COUNT (*)
-    LIMIT 3;`)
-    .then(dbRes => res.status(200).send(dbRes[0]))
-    .catch(err => console.log(err))
-    
 }
 
-
-
 }
-
